@@ -5,6 +5,7 @@ init:
 install:
   - choco install cyg-get
   - set PATH=%PATH%;C:\cygwin
+  - "cyg-get make >> cyg-get.log"
   - "cyg-get mingw64-i686-gcc-core >> cyg-get.log"
   - "cyg-get mingw64-x86_64-gcc-core >> cyg-get.log"
 
