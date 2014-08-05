@@ -10,14 +10,16 @@ install:
 
 build_script:
   - C:\cygwin\bin\sh -lc "uname -a;
-      gcc --version;
+      i686-w64-mingw32-gcc --version;
+      x86_64-w64-mingw32-gcc --version;
       cd /cygdrive/c/projects/ecos;
+      sed -i 's/ifdef _WIN64/if 0/' external/SuiteSparse_config/SuiteSparse_config.h;
       mkdir -p usr32/bin usr64/bin;
-      CC="i686-w64-mingw32-gcc -g -Wl,--stack,8388608" make test shared;
+      CC='i686-w64-mingw32-gcc -g -Wl,--stack,8388608' make test shared;
       ./ecostester.exe;
       mv libecos.d* usr32/bin/libecos.dll;
       make purge && rm -f ecostester.exe;
-      CC="x86_64-w64-mingw32-gcc -g -Wl,--stack,8388608" make test shared;
+      CC='x86_64-w64-mingw32-gcc -g -Wl,--stack,8388608' make test shared;
       ./ecostester.exe;
       mv libecos.d* usr64/bin/libecos.dll;
       7z a ecos-$APPVEYOR_REPO_COMMIT.7z usr32 usr64 COPYING"
