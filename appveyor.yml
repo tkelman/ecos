@@ -10,7 +10,7 @@ install:
   - "cyg-get mingw64-x86_64-gcc-core >> cyg-get.log"
 
 build_script:
-  - C:\cygwin\bin\sh -lc "uname -a;
+  - C:\cygwin\bin\sh -elc "uname -a;
       i686-w64-mingw32-gcc --version;
       x86_64-w64-mingw32-gcc --version;
       cd /cygdrive/c/projects/ecos;
